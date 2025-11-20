@@ -747,7 +747,7 @@ export default function Home() {
                         <div className="flex flex-col md:flex-row justify-between items-start mb-6">
                           <div>
                             <h3 className="text-2xl font-bold text-white dark:text-white group-hover:text-white dark:group-hover:text-white transition-colors duration-300">
-                              Senior Product Manager
+                              Principal Product Manager
                             </h3>
                             <p className="text-white dark:text-[#60A5FA] font-medium text-lg mt-1">Hindustan Times Digital</p>
                           </div>
@@ -949,6 +949,76 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-br from-[#0F172A] via-[#111C33] to-[#0F172A] text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div>
+              <h3 className="text-2xl font-bold mb-2 text-[#60A5FA]">Swati Sahu</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Product Manager passionate about building user-centric solutions and exploring the intersection of technology and business impact.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-3 text-[#93C5FD]">Quick Links</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="#about" className="hover:text-[#60A5FA] transition-colors duration-300">About</a>
+                </li>
+                <li>
+                  <a href="#skills" className="hover:text-[#60A5FA] transition-colors duration-300">Skills & Expertise</a>
+                </li>
+                <li>
+                  <a href="#projects" className="hover:text-[#60A5FA] transition-colors duration-300">Featured Projects</a>
+                </li>
+                <li>
+                  <a href="#experience" className="hover:text-[#60A5FA] transition-colors duration-300">Professional Experience</a>
+                </li>
+                <li>
+                  <a href="#contact" className="hover:text-[#60A5FA] transition-colors duration-300">Get in Touch</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-3 text-[#93C5FD]">Resources</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/swatisahu0190/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#60A5FA] transition-colors duration-300"
+                  >
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:swati.sahu0190@gmail.com"
+                    className="hover:text-[#60A5FA] transition-colors duration-300"
+                  >
+                    Email
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/Swatisahu19/portfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#60A5FA] transition-colors duration-300"
+                  >
+                    GitHub Repository
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/10 mt-10 pt-6 text-center text-xs text-gray-400">
+            © 2025 Swati Sahu. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
