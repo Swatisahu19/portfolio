@@ -14,6 +14,16 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  
+  /* Design tokens */
+  --border: 229 231 235;
+  --card: 255 255 255;
+  --card-foreground: 17 24 39;
+  --accent: 37 99 235;
+  --accent-foreground: 255 255 255;
+  --foreground: 17 24 39;
+  --muted-foreground: 107 114 128;
+  --primary-foreground: 255 255 255;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +31,16 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    
+    /* Dark mode design tokens */
+    --border: 30 41 59;
+    --card: 15 23 42;
+    --card-foreground: 255 255 255;
+    --accent: 96 165 250;
+    --accent-foreground: 15 23 42;
+    --foreground: 255 255 255;
+    --muted-foreground: 148 163 184;
+    --primary-foreground: 255 255 255;
   }
 }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
+import { Navbar } from './components/Navbar';
 import { FadeIn, SlideIn, ScaleIn } from './components/Animations';
 
 const skills = [
@@ -115,16 +115,16 @@ export default function Home() {
                 <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                   <a
                     href="https://www.linkedin.com/in/swatisahu0190/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
                     className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#2563EB] hover:bg-[#1E40AF] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2563EB]"
                   >
                     <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-.88-.06-1.273-1.16-1.273-1.17 0-1.33.91-1.33 1.235v5.642h-3v-11h3v1.493c.43-.623 1.17-1.273 2.38-1.273 1.9 0 3.11 1.248 3.11 3.676v6.104z"/>
                     </svg>
                     Connect on LinkedIn
-                  </a>
-                  <a
+          </a>
+          <a
                     href="#contact"
                     className="inline-flex items-center px-6 py-3 border border-[#2563EB] text-base font-medium rounded-md text-[#2563EB] bg-transparent hover:bg-[#F3F4F6] dark:text-white dark:hover:bg-[#1E293B] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2563EB]"
                   >
@@ -986,8 +986,8 @@ export default function Home() {
                 <li>
                   <a
                     href="https://www.linkedin.com/in/swatisahu0190/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                     className="hover:text-[#60A5FA] transition-colors duration-300"
                   >
                     LinkedIn
@@ -1004,8 +1004,8 @@ export default function Home() {
                 <li>
                   <a
                     href="https://github.com/Swatisahu19/portfolio"
-                    target="_blank"
-                    rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                     className="hover:text-[#60A5FA] transition-colors duration-300"
                   >
                     GitHub Repository
