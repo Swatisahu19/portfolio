@@ -74,27 +74,19 @@ export function Experience() {
         {/* Timeline */}
         <div className="max-w-4xl mx-auto">
           <div className="relative">
-            {/* Timeline line - more visible */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/60 to-accent md:-translate-x-1/2" />
+            {/* Timeline line - black */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-black dark:bg-white" />
 
             {experiences.map((exp, index) => (
               <div
                 key={exp.title + exp.company}
-                className={`relative mb-12 last:mb-0 pl-16 md:pl-0 md:w-1/2 ${
-                  index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12 md:ml-auto md:text-left"
-                }`}
+                className="relative mb-12 last:mb-0 pl-16"
               >
                 {/* Timeline dot */}
-                <div
-                  className={`absolute top-0 w-5 h-5 bg-accent rounded-full border-4 border-background shadow-lg ${
-                    index % 2 === 0
-                      ? "left-6 md:left-auto md:-right-[10px] md:translate-x-1/2"
-                      : "left-6 md:-left-[10px] md:-translate-x-1/2"
-                  }`}
-                />
+                <div className="absolute top-0 left-6 w-5 h-5 bg-black dark:bg-white rounded-full border-4 border-background shadow-lg -translate-x-1/2" />
 
                 <div className="p-6 bg-card rounded-2xl border border-border shadow-soft hover:shadow-card transition-all duration-300">
-                  <div className={`flex flex-wrap items-start gap-2 mb-3 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
+                  <div className="flex flex-wrap items-start gap-2 mb-3">
                     <Badge variant="accent" className="text-xs">
                       {exp.period}
                     </Badge>
@@ -104,7 +96,7 @@ export function Experience() {
                     {exp.title}
                   </h3>
                   
-                  <div className={`flex items-center gap-2 text-muted-foreground text-sm mb-4 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-4">
                     <Briefcase className="w-4 h-4" />
                     <span>{exp.company}</span>
                   </div>
@@ -122,7 +114,7 @@ export function Experience() {
                     ))}
                   </ul>
 
-                  <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
+                  <div className="flex flex-wrap gap-2">
                     {exp.skills.map((skill) => (
                       <Badge 
                         key={skill} 
