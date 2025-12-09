@@ -25,16 +25,16 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/90 backdrop-blur-xl shadow-lg dark:bg-[#0F172A]/90'
+          ? 'bg-white/90 backdrop-blur-xl shadow-lg border-b border-[#E5E7EB] dark:bg-[#0F172A]/90 dark:border-slate-800'
           : 'bg-transparent'
       }`}
     >
-      <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
         <a
           href="#"
-          className={`text-2xl font-semibold tracking-tight transition-colors ${
+          className={`font-serif text-2xl font-semibold tracking-tight transition-colors ${
             isScrolled
-              ? 'text-[#1E293B] hover:text-[#1E40AF] dark:text-white dark:hover:text-[#60A5FA]'
+              ? 'text-[#1F2937] hover:text-[#1E40AF] dark:text-white dark:hover:text-[#60A5FA]'
               : 'text-white hover:text-[#60A5FA]'
           }`}
         >
@@ -47,10 +47,10 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors relative group ${
+              className={`font-sans text-sm font-medium transition-colors relative group ${
                 isScrolled
-                  ? 'text-[#4B5563] hover:text-[#1E40AF] dark:text-gray-300 dark:hover:text-[#60A5FA]'
-                  : 'text-white/80 hover:text-white'
+                  ? 'text-[#6B7280] hover:text-[#111827] dark:text-gray-300 dark:hover:text-white'
+                  : 'text-white/70 hover:text-white'
               }`}
             >
               {link.name}
@@ -71,11 +71,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className={`md:hidden p-2 rounded-full transition-colors ${
-            isScrolled
-              ? 'text-[#1E293B] hover:bg-[#E5E7EB] dark:text-white dark:hover:bg-slate-800'
-              : 'text-white hover:bg-white/10'
-          }`}
+          className="md:hidden p-2 text-white hover:text-[#60A5FA] focus:outline-none"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -84,34 +80,30 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       <div
-        className={`md:hidden origin-top transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+        className={`md:hidden absolute top-full left-0 right-0 transition-all duration-300 ${
+          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-6">
-          <div className="rounded-2xl bg-white/95 dark:bg-[#0F172A]/95 shadow-lg border border-[#E5E7EB] dark:border-slate-800 overflow-hidden">
-            <div className="flex flex-col gap-2 p-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-medium text-[#1E293B] hover:text-[#1E40AF] dark:text-gray-100 dark:hover:text-[#60A5FA] px-3 py-2 rounded-lg transition-colors"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <a
-                href="https://www.linkedin.com/in/swatisahu0190/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-[#1E40AF] px-4 py-3 text-sm font-semibold text-white shadow hover:bg-[#153075] transition-colors"
-              >
-                <Linkedin className="w-4 h-4" />
-                Connect on LinkedIn
-              </a>
-            </div>
-          </div>
+        <div className="container mx-auto px-6 py-6 flex flex-col gap-4 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-xl border-b border-[#E5E7EB] dark:border-slate-800 shadow-lg">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="font-sans text-lg font-medium text-[#1F2937] hover:text-[#1E40AF] dark:text-white dark:hover:text-[#60A5FA] transition-colors py-2"
+            >
+              {link.name}
+            </a>
+          ))}
+          <a
+            href="https://www.linkedin.com/in/swatisahu0190/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-[#1E40AF] px-4 py-3 text-sm font-semibold text-white shadow hover:bg-[#153075] transition-colors"
+          >
+            <Linkedin className="w-4 h-4" />
+            Connect on LinkedIn
+          </a>
         </div>
       </div>
     </header>
