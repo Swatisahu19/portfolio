@@ -15,23 +15,23 @@ export function Hero() {
       <div className="container mx-auto px-6 py-32 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
-          <div className="text-primary-foreground">
+          <div className="text-white">
             <div className="animate-fade-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-full text-accent text-sm font-medium mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-full text-white text-sm font-medium mb-8">
                 <Sparkles className="w-4 h-4" />
                 Leading AI-Powered Product Innovation
               </div>
             </div>
 
-            <h1 className="animate-fade-up stagger-1 font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <h1 className="animate-fade-up stagger-1 font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-white">
               Swati Sahu
             </h1>
 
-            <p className="animate-fade-up stagger-2 text-xl md:text-2xl text-primary-foreground/80 font-light mb-4">
+            <p className="animate-fade-up stagger-2 text-xl md:text-2xl text-white font-light mb-4">
               Certified Product Manager | CSPO® | Digital Transformation
             </p>
 
-            <p className="animate-fade-up stagger-3 text-lg text-primary-foreground/60 max-w-xl mb-10 leading-relaxed">
+            <p className="animate-fade-up stagger-3 text-lg text-white max-w-xl mb-10 leading-relaxed">
               I transform ideas into impactful digital solutions through data-driven strategies and user-centric design. Over a decade of experience driving product innovation.
             </p>
 
@@ -51,18 +51,18 @@ export function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="animate-fade-up stagger-5 grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-primary-foreground/10">
+            <div className="animate-fade-up stagger-5 grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-white/10">
               <div>
                 <div className="font-serif text-3xl md:text-4xl font-bold text-accent">10+</div>
-                <div className="text-primary-foreground/60 text-sm mt-1">Years Experience</div>
+                <div className="text-white text-sm mt-1">Years Experience</div>
               </div>
               <div>
                 <div className="font-serif text-3xl md:text-4xl font-bold text-accent">₹2.5Cr</div>
-                <div className="text-primary-foreground/60 text-sm mt-1">Revenue Generated</div>
+                <div className="text-white text-sm mt-1">Revenue Generated</div>
               </div>
               <div>
                 <div className="font-serif text-3xl md:text-4xl font-bold text-accent">60%</div>
-                <div className="text-primary-foreground/60 text-sm mt-1">Efficiency Boost</div>
+                <div className="text-white text-sm mt-1">Efficiency Boost</div>
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@ export function Hero() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="animate-fade-up stagger-6 absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-primary-foreground/40">
+        <div className="animate-fade-up stagger-6 absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60">
           <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
           <ArrowDown className="w-5 h-5 animate-bounce" />
         </div>
