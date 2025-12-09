@@ -62,7 +62,7 @@ export function Experience() {
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
-          <span className="text-accent font-medium text-sm uppercase tracking-widest">Career Journey</span>
+          <span className="text-white font-medium text-sm uppercase tracking-widest">Career Journey</span>
           <h2 className="font-serif text-5xl md:text-6xl font-bold text-white mt-4 mb-6">
             Professional Experience
           </h2>
