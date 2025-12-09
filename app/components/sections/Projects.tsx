@@ -1,6 +1,7 @@
 'use client';
 
-import { ArrowUpRight, TrendingUp, Zap, ShoppingCart, Ticket, Bot } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { ArrowUpRight, TrendingUp, Zap, ShoppingCart, Ticket, Bot, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -58,13 +59,39 @@ const projects = [
 ];
 
 export function Projects() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance carousel every 3 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % projects.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+  };
+
   return (
-    <section id="projects" className="py-24 md:py-32 bg-background">
+    <section id="projects" className="py-7 md:py-10 bg-background">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
           <span className="text-accent font-medium text-sm uppercase tracking-widest">Portfolio</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
+          <h2 className="font-serif text-5xl md:text-6xl font-bold text-foreground mt-4 mb-6">
             Featured Projects
           </h2>
           <p className="text-muted-foreground text-lg">
@@ -72,52 +99,96 @@ export function Projects() {
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className="group p-8 rounded-2xl bg-card border border-border hover:border-accent/30 hover:shadow-elevated transition-all duration-500 flex flex-col"
-            >
-              {/* Header */}
-              <div className="flex items-start justify-between mb-6">
-                <div className={`w-14 h-14 rounded-xl ${project.color} flex items-center justify-center`}>
-                  <project.icon className="w-7 h-7" />
-                </div>
-                <Badge variant="outline" className="text-xs">
-                  {project.category}
-                </Badge>
-              </div>
+        {/* Carousel Container */}
+        <div 
+          className="relative overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Carousel Track */}
+          <div 
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {projects.map((project, index) => (
+              <div
+                key={project.title}
+                className="min-w-full px-4"
+              >
+                <div className="max-w-4xl mx-auto p-8 rounded-2xl bg-card border border-border hover:border-accent/30 hover:shadow-elevated transition-all duration-500 flex flex-col">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className={`w-14 h-14 rounded-xl ${project.color} flex items-center justify-center`}>
+                      <project.icon className="w-7 h-7" />
+                    </div>
+                    <Badge variant="outline" className="text-xs">
+                      {project.category}
+                    </Badge>
+                  </div>
 
-              {/* Content */}
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-4 group-hover:text-accent transition-colors">
-                {project.title}
-              </h3>
+                  {/* Content */}
+                  <h3 className="font-serif text-xl font-semibold text-foreground mb-4 hover:text-accent transition-colors">
+                    {project.title}
+                  </h3>
 
-              <div className="space-y-4 flex-grow">
-                <div>
-                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Challenge</span>
-                  <p className="text-foreground/80 text-sm mt-1">{project.challenge}</p>
-                </div>
-                <div>
-                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Approach</span>
-                  <p className="text-foreground/80 text-sm mt-1">{project.approach}</p>
-                </div>
-                <div>
-                  <span className="text-xs font-semibold text-accent uppercase tracking-wider">Outcome</span>
-                  <p className="text-foreground font-medium text-sm mt-1">{project.outcome}</p>
+                  <div className="space-y-4 flex-grow">
+                    <div>
+                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Challenge</span>
+                      <p className="text-foreground/80 text-sm mt-1">{project.challenge}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Approach</span>
+                      <p className="text-foreground/80 text-sm mt-1">{project.approach}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-accent uppercase tracking-wider">Outcome</span>
+                      <p className="text-foreground font-medium text-sm mt-1">{project.outcome}</p>
+                    </div>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-border">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-border">
-                {project.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="text-xs">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </div>
+          {/* Navigation Arrows */}
+          <button
+            onClick={goToPrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-card border border-border hover:border-accent/60 flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-10"
+            aria-label="Previous project"
+          >
+            <ChevronLeft className="w-5 h-5 text-foreground" />
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-card border border-border hover:border-accent/60 flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-10"
+            aria-label="Next project"
+          >
+            <ChevronRight className="w-5 h-5 text-foreground" />
+          </button>
+        </div>
+
+        {/* Carousel Indicators */}
+        <div className="flex justify-center gap-2 mt-8">
+          {projects.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? 'w-8 bg-accent'
+                  : 'w-2 bg-border hover:bg-accent/50'
+              }`}
+              aria-label={`Go to project ${index + 1}`}
+            />
           ))}
         </div>
 

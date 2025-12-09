@@ -94,7 +94,7 @@ export function Hero() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="animate-fade-up stagger-6 absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60">
+        <div className="animate-fade-up stagger-6 absolute bottom-8 left-0 right-0 flex flex-col items-center justify-center gap-2 text-white/60">
           <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
           <ArrowDown className="w-5 h-5 animate-bounce" />
         </div>

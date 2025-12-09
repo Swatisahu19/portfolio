@@ -38,12 +38,12 @@ const certifications = [
 
 export function About() {
   return (
-    <section id="about" className="py-24 md:py-32 bg-background">
+    <section id="about" className="py-7 md:py-10 bg-background">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
           <span className="text-accent font-medium text-sm uppercase tracking-widest">About Me</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
+          <h2 className="font-serif text-5xl md:text-6xl font-bold text-foreground mt-4 mb-6">
             Transforming Ideas Into
             <span className="gradient-text"> Impactful Products</span>
           </h2>

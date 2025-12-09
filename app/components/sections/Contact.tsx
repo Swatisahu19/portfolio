@@ -28,14 +28,14 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-background">
+    <section id="contact" className="py-7 md:py-10 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info */}
             <div>
               <span className="text-accent font-medium text-sm uppercase tracking-widest">Contact</span>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
+              <h2 className="font-serif text-5xl md:text-6xl font-bold text-foreground mt-4 mb-6">
                 Let's Connect
               </h2>
               <p className="text-muted-foreground text-lg mb-10">

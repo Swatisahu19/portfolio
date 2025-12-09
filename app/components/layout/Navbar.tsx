@@ -36,7 +36,7 @@ export function Navbar() {
         <a
           href="#"
           className={`font-serif text-2xl font-semibold tracking-tight transition-colors ${
-            isScrolled ? "text-foreground hover:text-accent" : "text-primary-foreground hover:text-accent"
+            isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
           }`}
         >
           Swati<span className="text-accent">.</span>
@@ -50,8 +50,8 @@ export function Navbar() {
               href={link.href}
               className={`font-sans text-sm font-medium transition-colors relative group ${
                 isScrolled 
-                  ? "text-muted-foreground hover:text-foreground" 
-                  : "text-primary-foreground/70 hover:text-primary-foreground"
+                  ? "text-foreground hover:text-accent" 
+                  : "text-white/90 hover:text-white"
               }`}
             >
               {link.name}
@@ -73,7 +73,9 @@ export function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-foreground"
+          className={`md:hidden p-2 transition-colors ${
+            isScrolled ? "text-foreground" : "text-white"
+          }`}
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
