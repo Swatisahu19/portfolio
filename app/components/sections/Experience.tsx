@@ -58,15 +58,15 @@ const experiences = [
 
 export function Experience() {
   return (
-    <section id="experience" className="py-7 md:py-10 bg-secondary/50">
+    <section id="experience" className="py-7 md:py-10 bg-[#0F172A] dark:bg-[#0F172A]">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
           <span className="text-accent font-medium text-sm uppercase tracking-widest">Career Journey</span>
-          <h2 className="font-serif text-5xl md:text-6xl font-bold text-foreground mt-4 mb-6">
+          <h2 className="font-serif text-5xl md:text-6xl font-bold text-white mt-4 mb-6">
             Professional Experience
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-white/70 text-lg">
             A decade of driving product innovation and digital transformation across diverse industries.
           </p>
         </div>
@@ -74,8 +74,8 @@ export function Experience() {
         {/* Timeline */}
         <div className="max-w-4xl mx-auto">
           <div className="relative">
-            {/* Timeline line - black */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-black dark:bg-white" />
+            {/* Timeline line - white */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-white" />
 
             {experiences.map((exp, index) => (
               <div
@@ -83,31 +83,31 @@ export function Experience() {
                 className="relative mb-12 last:mb-0 pl-16"
               >
                 {/* Timeline dot */}
-                <div className="absolute top-0 left-6 w-5 h-5 bg-black dark:bg-white rounded-full border-4 border-background shadow-lg -translate-x-1/2" />
+                <div className="absolute top-0 left-6 w-5 h-5 bg-white rounded-full border-4 border-[#0F172A] shadow-lg -translate-x-1/2" />
 
-                <div className="p-6 bg-card rounded-2xl border border-border shadow-soft hover:shadow-card transition-all duration-300">
+                <div className="p-6 bg-white/10 rounded-2xl border border-white/20 shadow-soft hover:shadow-card transition-all duration-300">
                   <div className="flex flex-wrap items-start gap-2 mb-3">
-                    <Badge variant="accent" className="text-xs">
+                    <Badge variant="accent" className="text-xs text-white">
                       {exp.period}
                     </Badge>
                   </div>
 
-                  <h3 className="font-serif text-xl font-semibold text-foreground mb-1">
+                  <h3 className="font-serif text-xl font-semibold text-white mb-1">
                     {exp.title}
                   </h3>
                   
-                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-4">
+                  <div className="flex items-center gap-2 text-white/70 text-sm mb-4">
                     <Briefcase className="w-4 h-4" />
                     <span>{exp.company}</span>
                   </div>
 
-                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  <p className="text-white/70 text-sm mb-4 leading-relaxed">
                     {exp.description}
                   </p>
 
                   <ul className="space-y-2 mb-4">
                     {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="text-foreground/80 text-sm flex items-start gap-2">
+                      <li key={i} className="text-white/90 text-sm flex items-start gap-2">
                         <span className="text-accent mt-1.5 flex-shrink-0 font-bold">•</span>
                         <span className="flex-1">{highlight}</span>
                       </li>
@@ -119,7 +119,7 @@ export function Experience() {
                       <Badge 
                         key={skill} 
                         variant="outline" 
-                        className="text-xs border-2 border-accent/30 hover:border-accent/60 transition-colors"
+                        className="text-xs border-2 border-white/30 hover:border-accent/60 text-white transition-colors"
                       >
                         {skill}
                       </Badge>

@@ -21,15 +21,15 @@ const skillCategories = [
 
 export function Skills() {
   return (
-    <section id="skills" className="py-7 md:py-10 bg-gradient-to-br from-background to-secondary/30 dark:from-secondary/50 dark:to-background">
+    <section id="skills" className="py-7 md:py-10 bg-[#0F172A] dark:bg-[#0F172A]">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
           <span className="text-accent font-medium text-sm uppercase tracking-widest">Expertise</span>
-          <h2 className="font-serif text-5xl md:text-6xl font-bold text-foreground mt-4 mb-6">
+          <h2 className="font-serif text-5xl md:text-6xl font-bold text-white mt-4 mb-6">
             Skills & Tools
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-white/70 text-lg">
             A comprehensive toolkit for delivering exceptional product experiences.
           </p>
         </div>
@@ -39,16 +39,16 @@ export function Skills() {
           {skillCategories.map((category) => (
             <div
               key={category.title}
-              className="p-8 rounded-2xl bg-card border border-border hover:shadow-card transition-all duration-300"
+              className="p-8 rounded-2xl bg-white/10 border border-white/20 hover:shadow-card transition-all duration-300"
             >
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-6">
+              <h3 className="font-serif text-xl font-semibold text-white mb-6">
                 {category.title}
               </h3>
               <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-4 py-2 bg-secondary rounded-lg border-2 border-border hover:border-accent/60 text-sm text-foreground font-medium hover:bg-accent/10 hover:text-accent transition-all duration-300 cursor-default"
+                    className="px-4 py-2 bg-white/10 rounded-lg border-2 border-white/30 hover:border-accent/60 text-sm text-white font-medium hover:bg-accent/20 hover:text-accent transition-all duration-300 cursor-default"
                   >
                     {skill}
                   </span>
