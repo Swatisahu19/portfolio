@@ -1,6 +1,6 @@
 'use client';
 
-import { Linkedin, Mail, Heart } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,7 +29,7 @@ export function Footer() {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:contact@swati-sahu.com"
+              href="mailto:swati.sahu0190@gmail.com"
               className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
               aria-label="Email"
             >
@@ -39,8 +39,8 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-primary-foreground/10 text-center text-primary-foreground/50 text-sm">
-          <p className="flex items-center justify-center gap-1">
-            © {currentYear} Swati Sahu. Crafted with <Heart className="w-4 h-4 text-accent fill-accent" /> for great products.
+          <p>
+            © {currentYear} Swati Sahu. All rights reserved.
           </p>
         </div>
       </div>

@@ -59,7 +59,7 @@ export function Contact() {
                 </a>
 
                 <a
-                  href="mailto:contact@swati-sahu.com"
+                  href="mailto:swati.sahu0190@gmail.com"
                   className="flex items-center gap-4 p-4 rounded-xl bg-secondary hover:bg-secondary/80 transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
@@ -67,7 +67,7 @@ export function Contact() {
                   </div>
                   <div>
                     <div className="font-medium text-foreground">Email</div>
-                    <div className="text-muted-foreground text-sm">contact@swati-sahu.com</div>
+                    <div className="text-muted-foreground text-sm">swati.sahu0190@gmail.com</div>
                   </div>
                 </a>
 
