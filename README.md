@@ -37,7 +37,7 @@ Case studies don't name the employer or its products. Experience, About and the 
 
 ## Photos
 
-`public/images/swati-hero.jpg` is the original desk portrait. `swati-about.jpg` was cut out on-device with macOS Vision person segmentation and placed on a studio backdrop. The face is not altered.
+Hero: `swati-boardroom.jpg`. About: `swati-desk.jpg`. Contact: `swati-lobby.jpg`. Navigation avatar: `swati-avatar.jpg`, cropped from the desk photo. All are unedited apart from cropping and resizing.
 
 ## Resume PDF
 

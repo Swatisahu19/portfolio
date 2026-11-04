@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { contact, site } from "@/content/site";
 import { NetworkCanvas } from "@/components/hero/NetworkCanvas";
@@ -56,8 +57,13 @@ export function Contact() {
 
       <div className="shell grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <Reveal><p className="eyebrow text-white/60"><span className="text-lime">07</span> / Contact</p></Reveal>
-          <h2 className="mt-6 text-d-lg font-medium">
+          <Reveal className="flex items-center gap-5">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full ring-2 ring-lime/70 ring-offset-4 ring-offset-night sm:h-24 sm:w-24">
+              <Image src={site.contactPortrait.src} alt={site.contactPortrait.alt} fill sizes="96px" className="object-cover object-[50%_22%]" />
+            </div>
+            <p className="eyebrow text-white/60"><span className="text-lime">07</span> / Contact</p>
+          </Reveal>
+          <h2 className="mt-8 text-d-lg font-medium">
             <LineReveal lines={["Have an interesting", "problem to solve?"]} />
           </h2>
           <Reveal delay={0.15}><p className="mt-8 max-w-md text-lg leading-relaxed text-white/65">{contact.copy}</p></Reveal>

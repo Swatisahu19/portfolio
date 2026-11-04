@@ -32,9 +32,9 @@ function Enter({ delay, children, className = "" }: { delay: number; children: R
 /* Label positions: kept to the composition side so they never sit on the headline */
 const LABEL_POS = [
   "left-[8%] top-[0%]",
-  "right-[-8%] top-[9%]",
-  "left-[-16%] top-[44%]",
-  "right-[-6%] top-[40%]",
+  "left-[-22%] top-[30%]",
+  "left-[-16%] top-[52%]",
+  "right-[-6%] top-[46%]",
   "left-[-4%] bottom-[3%]",
   "right-[4%] bottom-[-4%]",
 ];
@@ -154,7 +154,7 @@ export function Hero() {
                   fill
                   priority
                   sizes="(min-width: 1024px) 32vw, 80vw"
-                  className="object-cover object-[50%_28%]"
+                  className="object-cover object-[50%_62%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/35 via-transparent to-transparent" aria-hidden="true" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 text-ivory sm:p-5">
@@ -173,7 +173,7 @@ export function Hero() {
           </Enter>
 
           {/* Floating panels: facts from resume */}
-          <Depth x={sx} y={sy} depth={26} className="absolute -left-[14%] top-[16%] hidden sm:block">
+          <Depth x={sx} y={sy} depth={26} className="absolute -right-[12%] top-[14%] hidden sm:block">
             <Enter delay={1.05}>
               <div className="glass w-52 animate-drift rounded-md p-4 [animation-delay:-2s]">
                 <p className="label text-mute">Platform reach</p>

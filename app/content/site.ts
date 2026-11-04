@@ -29,8 +29,11 @@ export const site = {
    * Until then the Resume link opens the printable /resume page.
    */
   resumePdf: null as string | null,
-  portrait: { src: "/images/swati-hero.jpg", alt: "Swati Sahu at her desk", width: 1280, height: 1923 },
-  aboutPortrait: { src: "/images/swati-about.jpg", alt: "Portrait of Swati Sahu" },
+  /** Hero: boardroom. Also used for the social share preview. */
+  portrait: { src: "/images/swati-boardroom.jpg", alt: "Swati Sahu standing in a boardroom", width: 600, height: 1069 },
+  aboutPortrait: { src: "/images/swati-desk.jpg", alt: "Swati Sahu at her desk" },
+  contactPortrait: { src: "/images/swati-lobby.jpg", alt: "Swati Sahu in an office lobby" },
+  avatar: { src: "/images/swati-avatar.jpg", alt: "" },
   certifications: ["Certified Product Manager (CPM)", "Certified Scrum Product Owner (CSPO®)"],
 };
 

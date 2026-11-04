@@ -13,7 +13,7 @@ export function About() {
           <Reveal className="lg:col-span-5">
             <figure className="relative">
               <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-paper ring-1 ring-ink/10">
-                <Image src={site.aboutPortrait.src} alt={site.aboutPortrait.alt} fill sizes="(min-width: 1024px) 36vw, 90vw" className="object-cover object-top" />
+                <Image src={site.aboutPortrait.src} alt={site.aboutPortrait.alt} fill sizes="(min-width: 1024px) 36vw, 90vw" className="object-cover object-[50%_30%]" />
               </div>
               {/* Technical annotation */}
               <figcaption className="glass absolute -bottom-6 left-6 right-6 flex items-center justify-between rounded-md px-5 py-4 sm:left-auto sm:w-72">

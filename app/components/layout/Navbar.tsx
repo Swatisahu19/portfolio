@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -87,9 +88,9 @@ export function Navbar() {
         )}
       >
         <nav className="shell flex h-[var(--nav-h)] items-center justify-between" aria-label="Primary">
-          <Link href="/" className="group flex items-center gap-3 font-display text-[0.95rem] font-semibold tracking-[0.18em]" aria-label="Swati Sahu, home">
-            <span className={cn("grid h-7 w-7 place-items-center rounded-full text-[0.625rem] tracking-normal transition-colors", dark ? "bg-lime text-ink" : "bg-ink text-lime")} aria-hidden="true">
-              SS
+          <Link href="/" className="group flex items-center gap-3 font-sans text-[0.9rem] font-bold tracking-[0.16em]" aria-label="Swati Sahu, home">
+            <span className={cn("relative h-9 w-9 overflow-hidden rounded-full ring-2 transition-[box-shadow] duration-base", dark ? "ring-lime/80" : "ring-ink/10 group-hover:ring-lime")}>
+              <Image src={site.avatar.src} alt={site.avatar.alt} fill sizes="36px" className="object-cover" priority />
             </span>
             SWATI SAHU
           </Link>
