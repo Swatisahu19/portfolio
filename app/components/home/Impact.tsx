@@ -11,17 +11,10 @@ export function Impact() {
   return (
     <section id="impact" className="relative border-y border-ink/10 bg-paper py-24 md:py-32" aria-labelledby="impact-title">
       <div className="shell">
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-          <Reveal>
-            <p className="eyebrow"><span className="text-ink">01</span> / Impact at a glance</p>
-            <h2 id="impact-title" className="mt-5 max-w-xl text-d-md font-medium">Outcomes, with the receipts attached.</h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="max-w-sm text-sm leading-relaxed text-mute">
-              What changed because of the work. Rupee figures are rounded down for confidentiality; the case studies explain how each was measured.
-            </p>
-          </Reveal>
-        </div>
+        <Reveal className="mb-14">
+          <p className="eyebrow"><span className="text-ink">01</span> / Impact at a glance</p>
+          <h2 id="impact-title" className="mt-5 max-w-xl text-d-md font-medium">Outcomes, with the receipts attached.</h2>
+        </Reveal>
 
         <div className="relative">
           {/* Connecting line with nodes */}
