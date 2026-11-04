@@ -32,9 +32,9 @@ function Enter({ delay, children, className = "" }: { delay: number; children: R
 /* Label positions: kept to the composition side so they never sit on the headline */
 const LABEL_POS = [
   "left-[8%] top-[0%]",
-  "right-[-8%] top-[9%]",
-  "left-[-16%] top-[44%]",
-  "right-[-6%] top-[40%]",
+  "right-[-12%] top-[14%]",
+  "left-[-16%] top-[52%]",
+  "right-[-6%] top-[46%]",
   "left-[-4%] bottom-[3%]",
   "right-[4%] bottom-[-4%]",
 ];
@@ -154,7 +154,7 @@ export function Hero() {
                   fill
                   priority
                   sizes="(min-width: 1024px) 32vw, 80vw"
-                  className="object-cover object-[50%_28%]"
+                  className="object-cover object-[50%_62%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/35 via-transparent to-transparent" aria-hidden="true" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 text-ivory sm:p-5">
@@ -171,40 +171,6 @@ export function Hero() {
               ))}
             </Depth>
           </Enter>
-
-          {/* Floating panels: facts from resume */}
-          <Depth x={sx} y={sy} depth={26} className="absolute -left-[14%] top-[16%] hidden sm:block">
-            <Enter delay={1.05}>
-              <div className="glass w-52 animate-drift rounded-md p-4 [animation-delay:-2s]">
-                <p className="label text-mute">Platform reach</p>
-                <p className="mt-2 font-display text-3xl font-medium tracking-[-0.01em]">50M+</p>
-                <p className="mt-1 text-xs text-ink-2">users on the digital platform, across web, app & API</p>
-                <svg viewBox="0 0 160 30" className="mt-3 h-6 w-full" aria-hidden="true">
-                  <polyline points="0,26 20,22 40,24 60,16 80,18 100,10 120,12 140,5 160,3" fill="none" stroke="rgb(var(--c-cobalt))" strokeWidth="1.5" />
-                </svg>
-              </div>
-            </Enter>
-          </Depth>
-
-          <Depth x={sx} y={sy} depth={36} className="absolute -right-[10%] bottom-[18%] hidden sm:block">
-            <Enter delay={1.2}>
-              <div className="glass w-56 animate-drift rounded-md p-4">
-                <p className="label flex items-center justify-between text-mute">
-                  Enterprise estate <span className="text-ink">05</span>
-                </p>
-                <ul className="mt-3 space-y-1.5 font-mono text-[0.6875rem] text-ink-2">
-                  {["Salesforce", "SAP ERP", "Zoho", "CMS", "Payments"].map((s, i) => (
-                    <li key={s} className="flex items-center gap-2">
-                      <span className={`h-1.5 w-1.5 rounded-full ${i === 0 ? "bg-lime ring-2 ring-ink/30" : "bg-ink/50"}`} />
-                      {s}
-                      <span className="ml-auto h-px flex-1 bg-ink/15" />
-                      <span className="text-[0.625rem] text-mute">OK</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Enter>
-          </Depth>
 
           {/* Floating labels */}
           <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">

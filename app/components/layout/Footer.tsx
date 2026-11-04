@@ -14,7 +14,7 @@ export function Footer() {
     <footer className="no-print on-dark bg-night text-white" data-theme="dark">
       <div className="shell grid gap-10 border-t border-white/10 py-12 md:grid-cols-12 md:items-end">
         <div className="md:col-span-5">
-          <p className="font-display text-sm font-semibold tracking-[0.18em]">SWATI SAHU</p>
+          <p className="font-sans text-sm font-bold tracking-[0.16em]">SWATI SAHU</p>
           <p className="mt-2 text-sm text-white/55">Product leadership · Digital transformation · AI</p>
         </div>
         <nav aria-label="Footer" className="md:col-span-4">
