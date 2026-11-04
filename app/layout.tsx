@@ -1,46 +1,43 @@
-import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { site } from "@/content/site";
 
-const playfairDisplay = Playfair_Display({ 
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const dmSans = DM_Sans({ 
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
+/** Editorial serif for display, Inter for body and labels */
+const display = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-display", display: "swap" });
+const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Swati Sahu | Product Manager & Digital Transformation Leader",
-  description: "Certified Product Manager (CPM) & CSPO® with 10+ years experience in digital transformation, product strategy, and AI-powered innovation. Explore my portfolio.",
-  keywords: "Product Manager, Digital Transformation, CSPO, CPM, Product Strategy, AI, Agile, UX Design",
-  authors: [{ name: "Swati Sahu" }],
+  metadataBase: new URL(site.url),
+  title: { default: site.title, template: "%s · Swati Sahu" },
+  description: site.description,
+  authors: [{ name: site.name, url: site.url }],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Swati Sahu | Product Manager Portfolio",
-    description: "Certified Product Manager with 10+ years driving digital transformation and product innovation across media, fintech, and consulting.",
     type: "website",
-    url: "https://swati-sahu.com",
+    url: site.url,
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    images: [{ url: site.portrait.src, width: site.portrait.width, height: site.portrait.height, alt: site.portrait.alt }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Swati Sahu | Product Manager",
-    description: "10+ years driving digital transformation and product innovation.",
-  },
+  twitter: { card: "summary", title: site.title, description: site.description, images: [site.portrait.src] },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = { themeColor: "#F6F4EE", width: "device-width", initialScale: 1 };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${playfairDisplay.variable} ${dmSans.variable} font-sans`}>
-        {children}
+    <html lang="en-IN" className={`${display.variable} ${body.variable}`}>
+      <body>
+        <Navbar />
+        <main id="main" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

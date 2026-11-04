@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# swati-sahu.com
 
-## Getting Started
-
-First, run the development server:
+Personal site and case studies. Next.js 14 (App Router, fully static), TypeScript, Tailwind, Framer Motion.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build, type-check and lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What | Where |
+|---|---|
+| **All copy, metrics, roles, lab projects** | `app/content/site.ts` |
+| **Case studies** (12-section structure) | `app/content/case-studies.ts` |
+| Content types and the claim-verification model | `app/content/types.ts` |
+| Design tokens (colour, radius, shadow, motion) | `app/globals.css` (`:root`) + `tailwind.config.ts` |
+| Hero network / 3D canvas | `app/components/hero/NetworkCanvas.tsx` |
+| Case study diagrams | `app/components/diagrams/Diagrams.tsx` |
+| Homepage sections | `app/components/home/*` |
+| Case study template | `app/components/case-study/*`, route `app/work/[slug]` |
+| Printable resume (generated from content) | `app/resume` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Content integrity
 
-## Learn More
+Every claim carries a `check: { status, source, note }`.
 
-To learn more about Next.js, take a look at the following resources:
+- `verified`: matches a named source document.
+- `confirm`: published in a source, but the definition, baseline or attribution still needs confirming.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `drafted`: narrative written from experience and approved for publication.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`SHOW_REVIEW_MARKERS` in `site.ts` is **off** for the live site. With it off, review chips are hidden, and any case study section or field that is still unconfirmed (`todo`, "To confirm") is hidden, with the contents list renumbering itself. Turn it on locally to see every open question again.
 
-## Deploy on Vercel
+Case studies don't name the employer or its products. Experience, About and the resume page name the employer.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Photos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`public/images/swati-hero.jpg` is the original desk portrait. `swati-about.jpg` was cut out on-device with macOS Vision person segmentation and placed on a studio backdrop. The face is not altered.
+
+## Resume PDF
+
+Put a PDF in `/public` and set `site.resumePdf` (e.g. `"/Swati-Sahu-Resume.pdf"`). Until then every Resume link opens `/resume`, which prints to PDF.
+
+## Design system
+
+- **Type:** Instrument Serif (display, single weight, never faux-bolded), Inter (body and uppercase labels). Fluid scale `text-d-xl … text-d-sm`, `label`.
+- **Colour:** ivory/paper surfaces, ink text, night for dark sections. Lime is the signature accent, used for fills and on dark only, never as text on light (use `lime-ink`). Cobalt is the secondary accent.
+- **Motion:** `ease-out` cubic-bezier(0.22,1,0.36,1); 180/420/900 ms. Hero entrance is CSS so it paints before hydration. Everything respects `prefers-reduced-motion`, and the canvas pauses offscreen.
