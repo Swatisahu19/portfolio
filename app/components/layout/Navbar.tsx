@@ -37,7 +37,7 @@ export function Navbar() {
   // Active section tracking on the homepage
   useEffect(() => {
     if (!onHome) {
-      setActive(pathname.startsWith("/work") ? "work" : pathname.startsWith("/resume") ? "resume" : null);
+      setActive(pathname.startsWith("/work") ? "work" : pathname.startsWith("/lab") ? "lab" : pathname.startsWith("/resume") ? "resume" : null);
       return;
     }
     const io = new IntersectionObserver(

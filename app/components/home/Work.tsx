@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import Image from "next/image";
 import { alsoShipped, caseStudies } from "@/content/case-studies";
+import { hrBuddy, shots } from "@/content/hr-buddy";
 import type { CaseStudy } from "@/content/types";
 import { Diagram } from "@/components/diagrams/Diagrams";
 import { Reveal } from "@/components/motion/Reveal";
@@ -125,6 +127,67 @@ function ProjectCard({ c, i }: { c: CaseStudy; i: number }) {
   );
 }
 
+/**
+ * Project 05. Same card language as the four above, but with two explicit
+ * links instead of a whole-card link, because it leads to two destinations.
+ */
+function HrBuddyCard() {
+  return (
+    <Reveal className="lg:col-span-12">
+      <article data-theme="dark" className="on-dark group relative h-full overflow-hidden rounded-xl bg-night text-white">
+        <div className="tech-grid-dark absolute inset-0 opacity-60" aria-hidden="true" />
+        <div className="relative grid h-full gap-8 p-6 sm:p-10 lg:grid-cols-12 lg:items-center lg:gap-12 lg:p-14">
+          <div className="flex flex-col lg:col-span-5">
+            <div className="flex items-center justify-between gap-4">
+              <p className="label text-lime">{hrBuddy.index} · {hrBuddy.kicker}</p>
+            </div>
+            <h3 className="mt-6 text-d-md font-medium">
+              <Link href={hrBuddy.caseHref} className="transition-colors hover:text-lime">{hrBuddy.cardTitle}</Link>
+            </h3>
+            <p className="mt-4 leading-relaxed text-white/70">{hrBuddy.cardDescription}</p>
+
+            <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-white/10 pt-6 text-sm">
+              <div>
+                <dt className="label mb-2 text-white/45">Context</dt>
+                <dd>{hrBuddy.context}</dd>
+              </div>
+              <div>
+                <dt className="label mb-2 text-white/45">My role</dt>
+                <dd>{hrBuddy.cardRole}</dd>
+              </div>
+            </dl>
+
+            <div className="mt-8 border-t border-white/10 pt-6">
+              <p className="font-display text-5xl font-medium tracking-[-0.015em] text-lime">{hrBuddy.cardAchievement.value}</p>
+              <p className="mt-2 max-w-[20rem] text-sm text-white/60">{hrBuddy.cardAchievement.label}</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href={hrBuddy.caseHref}
+                  className="group/btn inline-flex items-center gap-3 rounded-full bg-lime px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-ink transition-shadow hover:shadow-[0_8px_24px_-8px_rgb(var(--c-lime)/0.9)]"
+                >
+                  Read case study <ArrowGlyph />
+                </Link>
+                <Link
+                  href={hrBuddy.experimentHref}
+                  className="group/btn inline-flex items-center gap-3 rounded-full border border-white/25 px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.12em] transition-colors hover:border-lime hover:text-lime"
+                >
+                  Explore AI experiment <ArrowGlyph />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <Tilt className="relative lg:col-span-7">
+            <div className="relative overflow-hidden rounded-lg bg-white/[0.03] ring-1 ring-white/10 transition-transform duration-slow ease-out group-hover:scale-[1.015]">
+              <Image src={shots.confirm.src} alt={shots.confirm.alt} width={shots.confirm.w} height={shots.confirm.h} sizes="(min-width: 1024px) 55vw, 100vw" className="h-auto w-full" />
+            </div>
+          </Tilt>
+        </div>
+      </article>
+    </Reveal>
+  );
+}
+
 export function Work() {
   return (
     <section id="work" className="relative py-24 md:py-36" aria-label="Selected work">
@@ -139,6 +202,7 @@ export function Work() {
           {caseStudies.map((c, i) => (
             <ProjectCard key={c.slug} c={c} i={i} />
           ))}
+          <HrBuddyCard />
         </div>
 
         {alsoShipped.length > 0 && <Reveal className="mt-10">

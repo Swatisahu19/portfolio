@@ -234,6 +234,32 @@ export const toolkit = [
 
 export const lab: LabProject[] = [
   {
+    name: "HR Buddy",
+    subtitle: "AI-powered enterprise HRMS",
+    featured: true,
+    stage: "LIVE PRODUCT",
+    problem: "Enterprise HR workflows are distributed across modules, forms and approval chains.",
+    conceptLabel: "Experiment",
+    concept: "Could I build a complete HRMS with an integrated AI assistant using AI-assisted development?",
+    contribution: "Product vision, requirements, architecture decisions, workflow design, AI interaction design, testing and production launch.",
+    approach: [
+      "Claude Code as AI development partner",
+      "Google Gemini as the in-product AI provider",
+      "Modular enterprise architecture",
+      "Permission-aware AI tools",
+      "Synthetic data",
+      "Automated testing and evaluation",
+    ],
+    outcome: "A working HRMS with 16 modules and an integrated AI assistant, deployed in 11 days.",
+    stageNote: "Independent experiment on synthetic data. Live at swati-sahu.com/hr-buddy.",
+    links: [
+      { label: "Explore product", href: "/hr-buddy", external: true },
+      { label: "Read case study", href: "/work/hr-buddy" },
+      { label: "Request code access", href: "/?topic=hr-buddy-access#contact" },
+    ],
+    check: { status: "verified", source: "HR Buddy features, AI and technology (15 Nov 2026)" },
+  },
+  {
     name: "PM Toolkit",
     stage: "LIVE PRODUCT",
     problem: "Product managers rebuild the same PRDs, prioritisation sheets and SQL from scratch on every project.",
@@ -265,7 +291,7 @@ export const lab: LabProject[] = [
       "An in-house HRMS that rebuilds every configured rule with parity first, then fixes known pain points, with no-code forms, workflows and approvals for HR admins.",
     contribution: "Product owner for requirements: discovery walkthroughs with HR, scope and phasing, PRD.",
     approach: ["Parity principle with signed-off deviations", "MoSCoW phasing across 9 Phase 1 modules", "Configurable builders over hard-coded policy"],
-    stageNote: "Requirements defined. Build not yet started.",
+    stageNote: "Requirements defined. Build not yet started. A separate employer initiative, not HR Buddy.",
     check: {
       status: "confirm",
       source: "Internal requirements document",

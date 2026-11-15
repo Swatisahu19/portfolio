@@ -1,19 +1,30 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { caseStudies, getCaseStudy } from "@/content/case-studies";
+import { hrBuddy, shots } from "@/content/hr-buddy";
 import { site } from "@/content/site";
 import { CaseStudyView } from "@/components/case-study/CaseStudyView";
+import { HrBuddyCaseStudy } from "@/components/hr-buddy/HrBuddyCaseStudy";
 
 export const dynamicParams = false;
 
+/** HR Buddy (05) has its own layout but shares this route, so it is prerendered with the rest */
 export function generateStaticParams() {
-  return caseStudies.map((c) => ({ slug: c.slug }));
+  return [...caseStudies.map((c) => ({ slug: c.slug })), { slug: hrBuddy.slug }];
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const url = `/work/${params.slug}`;
+  if (params.slug === hrBuddy.slug) {
+    return {
+      title: `${hrBuddy.cardTitle}: Case study`,
+      description: hrBuddy.summary,
+      alternates: { canonical: url },
+      openGraph: { type: "article", url, title: `${hrBuddy.title} · ${site.name}`, description: hrBuddy.summary, images: [shots.dashboard.src] },
+    };
+  }
   const c = getCaseStudy(params.slug);
   if (!c) return {};
-  const url = `/work/${c.slug}`;
   return {
     title: `${c.title}: Case study`,
     description: c.summary,
@@ -23,20 +34,21 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 }
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
+  const isHrBuddy = params.slug === hrBuddy.slug;
   const c = getCaseStudy(params.slug);
-  if (!c) notFound();
+  if (!isHrBuddy && !c) notFound();
   const ld = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: c.title,
-    description: c.summary,
+    headline: isHrBuddy ? hrBuddy.title : c!.title,
+    description: isHrBuddy ? hrBuddy.summary : c!.summary,
     author: { "@type": "Person", name: site.name, url: site.url },
-    url: `${site.url}/work/${c.slug}`,
+    url: `${site.url}/work/${params.slug}`,
   };
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <CaseStudyView c={c} />
+      {isHrBuddy ? <HrBuddyCaseStudy /> : <CaseStudyView c={c!} />}
     </>
   );
 }

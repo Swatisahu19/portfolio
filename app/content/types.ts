@@ -118,4 +118,10 @@ export type LabProject = {
   href?: string;
   hrefLabel?: string;
   check: Check;
+  /** Optional richer card (HR Buddy): own subtitle, field labels, outcome and several links */
+  subtitle?: string;
+  conceptLabel?: string;
+  outcome?: string;
+  links?: { label: string; href: string; external?: boolean }[];
+  featured?: boolean;
 };

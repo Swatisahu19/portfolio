@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { lab } from "@/content/site";
 import type { LabStage } from "@/content/types";
 import { Reveal } from "@/components/motion/Reveal";
@@ -52,20 +53,24 @@ export function Lab() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {lab.map((p, i) => (
-            <Reveal key={p.name} delay={i * 0.1} as="article" className="glass-dark group relative flex flex-col rounded-lg p-7 transition-transform duration-slow ease-out hover:-translate-y-1">
+            <Reveal key={p.name} delay={p.featured ? 0 : i * 0.1} as="article" className={cn("glass-dark group relative flex flex-col rounded-lg p-7 transition-transform duration-slow ease-out hover:-translate-y-1", p.featured && "ring-1 ring-lime/30 md:col-span-2 md:p-10")}>
               <div className="flex items-start justify-between gap-4">
-                <h3 className="text-d-sm font-medium">{p.name}</h3>
+                <div>
+                  <h3 className={cn("font-medium", p.featured ? "text-d-md" : "text-d-sm")}>{p.name}</h3>
+                  {p.subtitle && <p className="mt-1 text-white/60">{p.subtitle}</p>}
+                </div>
                 <span className={cn("label shrink-0 rounded-full px-2.5 py-1.5", p.stage === "LIVE PRODUCT" ? "bg-lime text-ink" : "border border-white/25 text-white/80")}>
                   {p.stage}
                 </span>
               </div>
               <div className="mt-5"><StageMeter stage={p.stage} /></div>
 
-              <dl className="mt-6 flex-1 space-y-5 text-[0.9375rem] leading-relaxed">
+              <dl className={cn("mt-6 flex-1 text-[0.9375rem] leading-relaxed", p.featured ? "grid gap-x-10 gap-y-5 md:grid-cols-2" : "space-y-5")}>
                 <div><dt className="label mb-1.5 text-white/45">Problem</dt><dd className="text-white/80">{p.problem}</dd></div>
-                <div><dt className="label mb-1.5 text-white/45">Concept</dt><dd className="text-white/80">{p.concept}</dd></div>
+                <div><dt className="label mb-1.5 text-white/45">{p.conceptLabel ?? "Concept"}</dt><dd className="text-white/80">{p.concept}</dd></div>
                 <div><dt className="label mb-1.5 text-white/45">My contribution</dt><dd className="text-white/80">{p.contribution}</dd></div>
-                <div>
+                {p.outcome && <div><dt className="label mb-1.5 text-white/45">Outcome</dt><dd className="text-white">{p.outcome}</dd></div>}
+                <div className={cn(p.featured && "md:col-span-2")}>
                   <dt className="label mb-2 text-white/45">Approach</dt>
                   <dd>
                     <ul className="flex flex-wrap gap-1.5">
@@ -79,6 +84,21 @@ export function Lab() {
 
               <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-5">
                 <p className="text-sm text-white/55">{p.stageNote}</p>
+                {p.links && (
+                  <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                    {p.links.map((l) => (
+                      <li key={l.label}>
+                        {l.external ? (
+                          <a href={l.href} target="_blank" rel="noopener noreferrer" className="label link-draw text-lime">
+                            {l.label} ↗<span className="sr-only"> (opens in new tab)</span>
+                          </a>
+                        ) : (
+                          <Link href={l.href} className="label link-draw text-lime">{l.label} →</Link>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 {p.href && (
                   <a href={p.href} target="_blank" rel="noopener noreferrer" className="label link-draw text-lime">
                     {p.hrefLabel} ↗<span className="sr-only"> (opens in new tab)</span>
