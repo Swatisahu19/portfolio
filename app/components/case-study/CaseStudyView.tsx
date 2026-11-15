@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Block, CaseStudy } from "@/content/types";
 import { caseStudies } from "@/content/case-studies";
+import { hrBuddy } from "@/content/hr-buddy";
 import { SHOW_REVIEW_MARKERS } from "@/content/site";
 import { Diagram } from "@/components/diagrams/Diagrams";
 import { CountUp } from "@/components/motion/CountUp";
@@ -32,7 +33,7 @@ const isTodo = (s?: string) => !s || /to confirm/i.test(s);
 const showValue = (v?: string) => !!v && (SHOW_REVIEW_MARKERS || !isTodo(v));
 const hasBody = (b: Block & { milestones?: unknown[] }) => !!(b.paragraphs?.length || b.bullets?.length || b.milestones?.length);
 
-function Section({ id, title, children, className, n }: { id: string; title: string; children: React.ReactNode; className?: string; n: string }) {
+export function Section({ id, title, children, className, n }: { id: string; title: string; children: React.ReactNode; className?: string; n: string }) {
   const s = { n };
   return (
     <section id={id} className={cn("scroll-mt-28 border-t border-ink/10 py-16 md:py-20", className)} aria-labelledby={`${id}-h`}>
@@ -90,9 +91,11 @@ export function CaseStudyView({ c }: { c: CaseStudy }) {
   };
   const toc: TocItem[] = ALL_SECTIONS.filter((x) => visible[x.id]).map((x, i) => ({ ...x, n: String(i + 1).padStart(2, "0") }));
   const num = (id: SectionId) => toc.find((t) => t.id === id)?.n ?? "";
-  const idx = caseStudies.findIndex((x) => x.slug === c.slug);
-  const next = caseStudies[(idx + 1) % caseStudies.length];
-  const prev = caseStudies[(idx - 1 + caseStudies.length) % caseStudies.length];
+  // Prev/next ring runs through every case study, including HR Buddy (05)
+  const ring = [...caseStudies.map(({ slug, index, title }) => ({ slug, index, title })), { slug: hrBuddy.slug, index: hrBuddy.index, title: hrBuddy.cardTitle }];
+  const idx = ring.findIndex((x) => x.slug === c.slug);
+  const next = ring[(idx + 1) % ring.length];
+  const prev = ring[(idx - 1 + ring.length) % ring.length];
 
   return (
     <article>

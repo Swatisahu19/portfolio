@@ -14,6 +14,7 @@ npm run build    # production build, type-check and lint
 |---|---|
 | **All copy, metrics, roles, lab projects** | `app/content/site.ts` |
 | **Case studies** (12-section structure) | `app/content/case-studies.ts` |
+| **HR Buddy** (case study 05, lab card, experiment page; source: "HR Buddy features, AI and technology") | `app/content/hr-buddy.ts`, screenshots in `public/images/hr-buddy/` |
 | Content types and the claim-verification model | `app/content/types.ts` |
 | Design tokens (colour, radius, shadow, motion) | `app/globals.css` (`:root`) + `tailwind.config.ts` |
 | Hero network / 3D canvas | `app/components/hero/NetworkCanvas.tsx` |

@@ -1,13 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { contact, site } from "@/content/site";
 import { NetworkCanvas } from "@/components/hero/NetworkCanvas";
 import { LineReveal, Reveal } from "@/components/motion/Reveal";
 import { ArrowGlyph, Button } from "@/components/ui/button";
 
-const TOPICS = ["Leadership role", "Advisory / consulting", "Speaking or writing", "Just saying hello"];
+const TOPICS = ["Leadership role", "Advisory / consulting", "Speaking or writing", "HR Buddy code access", "Just saying hello"];
+
+/** Links can preselect a topic, e.g. /?topic=hr-buddy-access#contact */
+const PRESETS: Record<string, { topic: string; message: string }> = {
+  "hr-buddy-access": {
+    topic: "HR Buddy code access",
+    message: "I'd like access to the HR Buddy repository. A little about me and why I'm interested:",
+  },
+};
 
 /**
  * There is no backend, so the form composes an email in the visitor's own
@@ -17,6 +25,16 @@ const TOPICS = ["Leadership role", "Advisory / consulting", "Speaking or writing
 export function Contact() {
   const [state, setState] = useState<"idle" | "opened">("idle");
   const [copied, setCopied] = useState(false);
+  const [topic, setTopic] = useState(TOPICS[0]);
+  const [message, setMessage] = useState("");
+
+  // Read the preset after mount, so the page stays fully static
+  useEffect(() => {
+    const preset = PRESETS[new URLSearchParams(window.location.search).get("topic") ?? ""];
+    if (!preset) return;
+    setTopic(preset.topic);
+    setMessage((m) => m || preset.message);
+  }, []);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -131,9 +149,9 @@ export function Contact() {
                 <fieldset>
                   <legend className="mb-2 text-sm text-white/70">Topic</legend>
                   <div className="flex flex-wrap gap-2">
-                    {TOPICS.map((t, i) => (
+                    {TOPICS.map((t) => (
                       <label key={t} className="cursor-pointer">
-                        <input type="radio" name="topic" value={t} defaultChecked={i === 0} className="peer sr-only" />
+                        <input type="radio" name="topic" value={t} checked={topic === t} onChange={() => setTopic(t)} className="peer sr-only" />
                         <span className="label inline-block rounded-full border border-white/15 px-3 py-2 text-white/70 transition-colors peer-checked:border-lime peer-checked:bg-lime peer-checked:text-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-lime">
                           {t}
                         </span>
@@ -143,7 +161,7 @@ export function Contact() {
                 </fieldset>
                 <div>
                   <label htmlFor="c-msg" className="mb-2 block text-sm text-white/70">Message</label>
-                  <textarea id="c-msg" name="message" required rows={5} className={`${field} resize-none`} placeholder="What are you working on?" />
+                  <textarea id="c-msg" name="message" required rows={5} value={message} onChange={(e) => setMessage(e.target.value)} className={`${field} resize-none`} placeholder="What are you working on?" />
                 </div>
                 <Button type="submit" variant="lime" size="lg" className="w-full">
                   Compose email <ArrowGlyph />
