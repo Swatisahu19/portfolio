@@ -1,6 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { experiences } from "@/content/hr-buddy";
 import { Shot } from "./Shot";
@@ -9,7 +10,7 @@ import { cn } from "@/lib/utils";
 /** The three HR Buddy experiences as accessible tabs, each with a real screen */
 export function ExperienceTabs() {
   const [active, setActive] = useState(0);
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const e = experiences[active];
 

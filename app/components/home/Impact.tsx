@@ -1,13 +1,14 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
+import { motion } from "framer-motion";
 import { impact } from "@/content/site";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { ReviewMark } from "@/components/ui/Review";
 
 export function Impact() {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   return (
     <section id="impact" className="relative border-y border-ink/10 bg-paper py-24 md:py-32" aria-labelledby="impact-title">
       <div className="shell">

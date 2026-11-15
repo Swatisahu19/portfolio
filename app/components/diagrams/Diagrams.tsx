@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
+import { motion } from "framer-motion";
 import type { DiagramKind } from "@/content/types";
 
 /**
@@ -22,7 +23,7 @@ const useTone = (dark?: boolean) => ({
 });
 
 function Draw({ d, stroke, delay = 0, width = 1.25, dash }: { d: string; stroke: string; delay?: number; width?: number; dash?: string }) {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   return (
     <motion.path
       d={d}
@@ -39,7 +40,7 @@ function Draw({ d, stroke, delay = 0, width = 1.25, dash }: { d: string; stroke:
 }
 
 function Pulse({ path, color, dur = 3, begin = 0, r = 3 }: { path: string; color: string; dur?: number; begin?: number; r?: number }) {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   if (reduce) return null;
   return (
     <circle r={r} fill={color}>

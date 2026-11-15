@@ -10,8 +10,8 @@ import { ArrowGlyph } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 /** Section ids observed for the active state on the homepage */
-const SECTION_IDS = ["work", "philosophy", "experience", "lab", "about", "contact"];
-const NAV_FOR_SECTION: Record<string, string> = { work: "work", philosophy: "work", experience: "experience", lab: "lab", about: "about" };
+const SECTION_IDS = ["work", "experience", "lab", "about", "contact"];
+const NAV_FOR_SECTION: Record<string, string> = { work: "work", experience: "experience", lab: "lab", about: "about", contact: "about" };
 
 export function Navbar() {
   const pathname = usePathname();

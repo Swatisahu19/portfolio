@@ -19,7 +19,17 @@ export const hrBuddy = {
   slug: "hr-buddy",
   index: "05",
   kicker: "AI-powered enterprise product · 0→1",
-  cardTitle: "HR Buddy — An AI-Powered HRMS",
+  cardTitle: "Designing and Building an AI-Powered HRMS",
+  cardKicker: "Independent AI product · 0→1",
+  cardContext:
+    "HR Buddy is a working HRMS prototype I drove from product definition to production: employee self-service, manager workflows and HR administration across 16 modules, with an AI assistant that answers questions and prepares requests for employees to confirm.",
+  /** Strategy, execution and hands-on building, kept distinct */
+  cardRoles: [
+    { k: "Product strategy", v: "Vision, hypothesis, PRDs and phased scope" },
+    { k: "Product execution", v: "Architecture decisions, workflow and AI interaction design, testing, launch" },
+    { k: "Hands-on build", v: "Built with Claude Code as development partner and deployed to production" },
+  ],
+  cardOutcomes: ["16 working modules and an AI assistant with 41 permission-checked read tools", "Live in production, with 15 demo workflows passing a production check"],
   title: "HR Buddy: Rethinking Enterprise HR Through AI",
   titleLines: ["HR Buddy: Rethinking", "Enterprise HR Through AI"],
   statement:
@@ -229,6 +239,49 @@ export const lessons = [
   { title: "A working product is not a hardened deployment", body: "HR Buddy is live and works end to end on synthetic data. Real SSO, sent notifications, load and penetration testing and an accessibility audit are still ahead." },
 ];
 
+/** The 16 modules grouped by what they do for the organisation */
+export const moduleGroups = [
+  { group: "Organisation & access", names: ["Organisation", "Employee master", "Access and roles"] },
+  { group: "Employee lifecycle", names: ["Onboarding", "Lifecycle"] },
+  { group: "Time & attendance", names: ["Attendance", "Leave", "Work from home"] },
+  { group: "Performance", names: ["Performance", "Goals and KPIs"] },
+  { group: "Employee services", names: ["HR helpdesk", "Salary slips", "Policy library"] },
+  { group: "Platform, integrations & AI", names: ["Platform", "Integrations", "HR Buddy AI"] },
+];
+
+/** Product decisions: what the assistant may do, what it may see, and how production is treated */
+export const productDecisions = [
+  { title: "What the assistant may do", body: "Read through the user's own routes, prepare three kinds of request, and never submit. That boundary was a product decision, not a technical default." },
+  { title: "What the model may never see", body: "Salary, compensation, ratings and disciplinary data are excluded, with a second filter on every tool result." },
+  { title: "Which model, where", body: "Gemini's free tier is acceptable only because the data is synthetic. Before real employee data, it must move to a paid tier with a data-processing agreement or be switched off." },
+  { title: "How production is treated", body: "Migrations are additive, and a database with data is never dropped or reseeded. Production refuses resets." },
+  { title: "Decisions left open on purpose", body: "Whether non-managers may list teammates through the assistant is still an open permission question, so the assistant does not do it." },
+];
+
+export const tradeoffs = [
+  { title: "Speed vs hardening", body: "The timeline bought a complete, working product. It did not buy SSO, sent notifications, load testing or an accessibility audit, and the product says so." },
+  { title: "Free model vs data protection", body: "A free-tier model kept the experiment at zero cost, and is the reason only synthetic data is allowed." },
+  { title: "Provider choice vs lock-in", body: "An Anthropic adapter was built and tested behind the same interface but left unconnected, so switching needs a key and a setting, not code." },
+  { title: "Breadth vs depth", body: "16 modules show the shape of a full HRMS. Some Phase 2 items from the PRD, such as a report builder and dashboards, were deliberately left out." },
+];
+
+/** What is real today, what stands in for something, and what is still ahead */
+export const status = {
+  live: [
+    "16 HRMS modules with screens, APIs and tests",
+    "HR Buddy AI on Google Gemini Flash-Lite",
+    "Neon Postgres in production, with daily scheduled jobs",
+    "CI: typecheck, tests and AI evaluation on every push",
+  ],
+  simulated: [
+    "All people, policies and numbers are synthetic",
+    "Demo personas, behind an access code, stand in for SSO and MFA",
+    "Email and push are captured in an outbox, not sent",
+    "A rule-based mock replaces the model in local development and tests",
+    "The Anthropic Claude adapter is built and tested, not connected",
+  ],
+};
+
 export const nextSteps = [
   "Real SSO and MFA",
   "Live email and push notifications",
@@ -240,15 +293,6 @@ export const nextSteps = [
   "Accessibility audit",
 ];
 
-export const boundaries = [
-  "An independent portfolio experiment, not an employer product.",
-  "All people, policies and numbers are synthetic.",
-  "Gemini Flash-Lite is live. The Anthropic adapter is built and tested but not connected.",
-  "The AI prepares actions; employees confirm them.",
-  "Demo personas stand in for SSO and MFA, which are not implemented.",
-  "Notifications are captured in an outbox and not sent. Google Chat is not built.",
-  "Not a fully production-hardened enterprise deployment.",
-];
 
 /* ------------------------------------------------------------------ */
 /* AI experiment narrative                                              */
@@ -259,7 +303,7 @@ export const experiment = {
   titleLines: ["Building an Enterprise", "Product with AI"],
   subtitle: "An 11-day experiment",
   intro:
-    "HR Buddy was a test of a question I care about as a product leader: if AI can write most of the code, what does the product owner's job become? This page is about the method, not the feature list.",
+    "HR Buddy was a test of a question I care about as a product leader: if AI can write most of the code, what does the product owner's job become? This page is about the method. The product itself is in the case study.",
   layers: [
     {
       kicker: "AI used to build HR Buddy",
@@ -285,24 +329,29 @@ export const experiment = {
     { stage: "Testing", body: "20 test files, a route × persona permission matrix and an 87-question evaluation set, run in CI." },
     { stage: "Production deployment", body: "Merged to production on 11 November, then checked workflow by workflow on the live site." },
   ],
-  worked: [
-    "Writing the PRD first. The 3 November rebuild came from revised requirements, and the code followed quickly.",
-    "Building module by module, each with its own tests, so every step could be checked before the next.",
-    "A mock AI provider, so the assistant could be tested and evaluated without calling a model or the network.",
-    "One permission model for screens and assistant alike, so safety came from the architecture rather than from prompt wording.",
+  requirements: [
+    { title: "A catalogue, not a wish list", body: "The PRD v0.3 catalogue gives every requirement an ID by area: organisation, employee, access, platform, lifecycle, onboarding, attendance, leave, performance and non-functional." },
+    { title: "Screens and engines specified", body: "A Phase 1 PRD numbers 12 employee screens and 14 admin screens, and defines the shared engines: scopes, policy resolution, approval flows, notifications, audit and effective dating." },
+    { title: "Scope written down, including what is out", body: "The build plan lists what was removed from version 1 and every deviation, such as SSO, MFA and OCR being simulated or not built." },
+    { title: "The assistant had its own requirements", body: "A separate PRD and a use case catalogue for the conversational agent, mapped to the tools it would need, with a gap analysis before build." },
   ],
-  judgment: [
-    { title: "What the assistant may do", body: "Read through the user's own routes, prepare three kinds of request, and never submit. That boundary was a product decision, not a technical default." },
-    { title: "What the model may never see", body: "Salary, compensation, ratings and disciplinary data are excluded, with a second filter on every tool result." },
-    { title: "Which model, where", body: "Gemini's free tier was acceptable only because the data is synthetic. Before real employee data, it must move to a paid tier with a data-processing agreement or be switched off." },
-    { title: "How production is treated", body: "Migrations are additive, and a database with data is never dropped or reseeded. Production refuses resets." },
-    { title: "Decisions left open on purpose", body: "Whether non-managers may list teammates through the assistant is still an open permission question, so the assistant does not do it." },
+  building: [
+    "Claude Code worked inside the repository from the PRDs and the build plan, module by module, writing code, migrations and tests together.",
+    "I reviewed, ran and merged the work. 40 commits are co-authored by Claude.",
+    "Before production, an acceptance check recorded evidence for each phase and listed what had to happen before merging: a rehearsal against a copy of the production database with a restore point, and my go-ahead.",
+    "Deployments apply additive migrations only. A database with data is never dropped or reseeded, and production refuses resets.",
   ],
-  tradeoffs: [
-    { title: "Speed vs hardening", body: "Eleven days bought a complete, working product. It did not buy SSO, sent notifications, load testing or an accessibility audit, and the product says so." },
-    { title: "Free model vs data protection", body: "A free-tier model kept the experiment at zero cost, and is the reason only synthetic data is allowed." },
-    { title: "Provider choice vs lock-in", body: "An Anthropic adapter was built and tested behind the same interface but left unconnected, so switching needs a key and a setting, not code." },
-    { title: "Breadth vs depth", body: "16 modules show the shape of a full HRMS. Some Phase 2 items from the PRD, such as a report builder and dashboards, were deliberately left out." },
+  aiTesting: [
+    { title: "A deterministic stand-in", body: "A rule-based mock provider lets the assistant's tools, cards and logging be tested without calling a model or the network." },
+    { title: "Tuned and held-out questions", body: "87 evaluation questions: 67 used while tuning and 20 held out, so phrasing the build never saw shows where answers stop generalising." },
+    { title: "Measured on the real chat API", body: "The evaluation runs against the real chat API with network access blocked, measuring intent, completion and logging. It runs in CI on every push." },
+    { title: "Then used for real", body: "15 demo workflows were walked through on production. Three wording issues the suite had not caught were fixed the same day." },
+  ],
+  controls: [
+    "The assistant calls the same permission-checked routes as the screens, as the signed-in user.",
+    "It can prepare a leave, WFH or helpdesk request, but only the employee's Confirm submits it.",
+    "Salary, compensation, ratings and disciplinary data never reach the model.",
+    "Every tool call is audited, and usage is capped per turn, per minute and per day.",
   ],
   lessons: [
     "AI changes where the product owner's time goes, from chasing delivery to deciding scope, rules and wording.",

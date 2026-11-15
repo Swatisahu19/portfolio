@@ -103,6 +103,8 @@ export type CaseStudy = {
   challenges: Challenge[];
   learnings: { worked: string[]; didnt: string[]; learned: string[]; differently: string[]; todo?: string[]; drafted?: boolean };
   capabilities: string[];
+  /** Homepage card: short context, my contribution and two outcomes (each restates a sourced fact) */
+  card: { context: string; contribution: string; outcomes: string[] };
 };
 
 export type LabStage = "CONCEPT" | "PROTOTYPE" | "IN DEVELOPMENT" | "LIVE PRODUCT";

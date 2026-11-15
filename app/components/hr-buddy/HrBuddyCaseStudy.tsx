@@ -2,12 +2,15 @@ import Link from "next/link";
 import { caseStudies } from "@/content/case-studies";
 import {
   aiCapabilities,
-  boundaries,
   chatbotVsAssistant,
   hrBuddy,
   lessons,
   localRunNote,
+  moduleGroups,
   modules,
+  productDecisions,
+  status,
+  tradeoffs,
   nextSteps,
   opportunity,
   safeguards,
@@ -29,14 +32,16 @@ import { Shot } from "./Shot";
 import { cn } from "@/lib/utils";
 
 const SECTIONS = [
-  { id: "opportunity", label: "The opportunity" },
-  { id: "product", label: "The product" },
+  { id: "opportunity", label: "Problem & hypothesis" },
+  { id: "product", label: "Users & product scope" },
   { id: "ai", label: "HR Buddy AI" },
-  { id: "responsible-ai", label: "Responsible AI" },
-  { id: "technology", label: "Technology" },
-  { id: "validation", label: "Validation" },
+  { id: "responsible-ai", label: "Safeguards" },
+  { id: "technology", label: "Architecture & stack" },
+  { id: "validation", label: "Evaluation & testing" },
+  { id: "decisions", label: "Decisions & trade-offs" },
+  { id: "status", label: "Live, simulated, roadmap" },
   { id: "timeline", label: "Execution timeline" },
-  { id: "lessons", label: "Lessons & next steps" },
+  { id: "lessons", label: "Learnings" },
 ];
 const toc: TocItem[] = SECTIONS.map((s, i) => ({ ...s, n: String(i + 1).padStart(2, "0") }));
 const n = (id: string) => toc.find((t) => t.id === id)!.n;
@@ -159,20 +164,29 @@ export function HrBuddyCaseStudy() {
             <Reveal className="mt-10"><ExperienceTabs /></Reveal>
 
             <Reveal className="mt-14">
-              <p className="label mb-4 text-mute">All 16 modules</p>
+              <p className="label mb-4 text-mute">16 modules, in six groups</p>
             </Reveal>
-            <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {modules.map((m, i) => (
-                <Reveal as="li" key={m.name} delay={(i % 3) * 0.05} className="group relative rounded-md border border-ink/10 bg-paper p-5 transition-shadow hover:shadow-card">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="label text-mute">{String(i + 1).padStart(2, "0")}</span>
-                    {m.phase === "Added in Phase 2" && <span className="label rounded-full bg-cobalt-soft px-2 py-0.5 text-cobalt">Phase 2</span>}
-                  </div>
-                  <p className="mt-3 font-display text-xl">{m.name}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-2">{m.detail}</p>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {moduleGroups.map((g, gi) => (
+                <Reveal key={g.group} delay={(gi % 3) * 0.05} className="rounded-lg border border-ink/10 bg-paper p-5">
+                  <p className="label text-cobalt">{g.group}</p>
+                  <ul className="mt-4 space-y-3">
+                    {g.names.map((name) => {
+                      const m = modules.find((x) => x.name === name)!;
+                      return (
+                        <li key={name}>
+                          <p className="flex items-center gap-2 font-medium">
+                            {m.name}
+                            {m.phase === "Added in Phase 2" && <span className="label rounded-full bg-cobalt-soft px-1.5 py-0.5 text-[0.5625rem] text-cobalt">Phase 2</span>}
+                          </p>
+                          <p className="mt-1 text-sm leading-relaxed text-ink-2">{m.detail}</p>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </Reveal>
               ))}
-            </ul>
+            </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               <Reveal><Shot shot={shots.leave} sizes="(min-width: 768px) 40vw, 100vw" /></Reveal>
@@ -304,6 +318,50 @@ export function HrBuddyCaseStudy() {
             <p className="mt-4 text-sm text-mute">{validationNote}</p>
           </Section>
 
+          {/* Decisions & trade-offs */}
+          <Section n={n("decisions")} id="decisions" title="My product decisions & trade-offs">
+            <div className="grid gap-4">
+              {productDecisions.map((d, i) => (
+                <Reveal key={d.title} delay={i * 0.04}>
+                  <div className="grid gap-4 rounded-lg bg-night p-6 text-white md:grid-cols-[auto_1fr] md:gap-8 md:p-8">
+                    <span className="font-display text-4xl text-lime">D{i + 1}</span>
+                    <div>
+                      <h3 className="text-d-sm font-medium">{d.title}</h3>
+                      <p className="mt-3 max-w-prose leading-relaxed text-white/75">{d.body}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <div className="mt-8 grid gap-px overflow-hidden rounded-lg bg-ink/10 sm:grid-cols-2">
+              {tradeoffs.map((t, i) => (
+                <Reveal key={t.title} delay={(i % 2) * 0.05} className="bg-paper p-6">
+                  <p className="font-display text-xl">{t.title}</p>
+                  <p className="mt-2 leading-relaxed text-ink-2">{t.body}</p>
+                </Reveal>
+              ))}
+            </div>
+          </Section>
+
+          {/* Live / simulated / roadmap */}
+          <Section n={n("status")} id="status" title="What is live, what is simulated, what is next">
+            <div className="grid gap-4 md:grid-cols-3">
+              {[
+                { k: "Live", items: status.live, tone: "bg-lime text-ink" },
+                { k: "Simulated or not connected", items: status.simulated, tone: "border border-ink/25 text-ink-2" },
+                { k: "Roadmap · not built", items: nextSteps, tone: "border border-dashed border-ink/30 text-mute" },
+              ].map((col, i) => (
+                <Reveal key={col.k} delay={i * 0.06} className="rounded-lg border border-ink/10 bg-paper p-6">
+                  <span className={`label inline-block rounded-full px-2.5 py-1 ${col.tone}`}>{col.k}</span>
+                  <ul className="mt-5 space-y-2.5 text-sm leading-relaxed text-ink-2">
+                    {col.items.map((x) => <li key={x} className="flex gap-3"><span className="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-ink/50" aria-hidden="true" />{x}</li>)}
+                  </ul>
+                </Reveal>
+              ))}
+            </div>
+            <p className="mt-4 text-sm text-mute">HR Buddy is an independent personal product experiment. It is not an employer product, and it is not a production-hardened enterprise deployment.</p>
+          </Section>
+
           {/* 07 Timeline */}
           <Section n={n("timeline")} id="timeline" title="Execution timeline">
             <ol className="relative space-y-8 border-l border-ink/15 pl-8">
@@ -319,7 +377,7 @@ export function HrBuddyCaseStudy() {
           </Section>
 
           {/* 08 Lessons */}
-          <Section n={n("lessons")} id="lessons" title="Lessons & next steps">
+          <Section n={n("lessons")} id="lessons" title="Learnings">
             <div className="grid gap-px overflow-hidden rounded-lg bg-ink/10 sm:grid-cols-2">
               {lessons.map((l, i) => (
                 <Reveal key={l.title} delay={(i % 2) * 0.05} className="bg-paper p-6">
@@ -327,21 +385,6 @@ export function HrBuddyCaseStudy() {
                   <p className="mt-2 leading-relaxed text-ink-2">{l.body}</p>
                 </Reveal>
               ))}
-            </div>
-
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
-              <Reveal className="rounded-lg border border-dashed border-ink/25 p-6">
-                <p className="label text-mute">Future work · not built yet</p>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {nextSteps.map((x) => <li key={x} className="rounded-full border border-ink/15 px-3 py-1.5 text-sm text-ink-2">{x}</li>)}
-                </ul>
-              </Reveal>
-              <Reveal delay={0.08} className="rounded-lg bg-paper p-6 ring-1 ring-ink/10">
-                <p className="label text-mute">What this is, and isn&apos;t</p>
-                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-ink-2">
-                  {boundaries.map((b) => <li key={b} className="flex gap-3"><span className="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-ink/50" aria-hidden="true" />{b}</li>)}
-                </ul>
-              </Reveal>
             </div>
 
             <Reveal className="mt-10">

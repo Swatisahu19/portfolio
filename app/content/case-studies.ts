@@ -198,6 +198,11 @@ export const caseStudies: CaseStudy[] = [
       todo: ["What didn't go to plan, and what would you do differently today?"],
     },
     capabilities: ["Enterprise Platform Strategy", "Salesforce & CRM", "Order-to-Cash", "ERP Integration", "Stakeholder Arbitration", "Change Management"],
+    card: {
+      context: "Ad sales across print, digital and classifieds, run by 5,000+ sellers in 58 locations.",
+      contribution: "Product owner of Salesforce as the system of record for advertising and subscription revenue.",
+      outcomes: ["₹100 Cr+ annual bookings on one Salesforce-native platform", "Order-to-invoice turnaround 40% faster through the SAP integration"],
+    },
   },
 
   /* ================================================================== */
@@ -334,6 +339,11 @@ export const caseStudies: CaseStudy[] = [
       todo: ["What would you do differently on the route platform today?"],
     },
     capabilities: ["0→1 Product Launch", "Enterprise Transformation", "Operations & Logistics", "ML Forecasting", "Route Optimisation", "Change Management"],
+    card: {
+      context: "Newspaper circulation moving from manual orders to a route platform for 500,000+ subscribers in 10+ cities.",
+      contribution: "Conceived the platform and carried it from concept through beta to full rollout.",
+      outcomes: ["99% delivery accuracy, with complaints down 80%", "10,000+ vendors and agents online; order cycle time halved"],
+    },
   },
 
   /* ================================================================== */
@@ -444,6 +454,11 @@ export const caseStudies: CaseStudy[] = [
       ],
     },
     capabilities: ["Consumer Product Strategy", "North-Star Metrics", "Personalisation", "Applied ML", "GenAI Adoption", "Experimentation"],
+    card: {
+      context: "A content platform serving 50M+ users across web, app and API.",
+      contribution: "Own the roadmap, north-star metrics, personalisation and subscription conversion.",
+      outcomes: ["50M+ users on the platform", "4 ML and GenAI capabilities shipped or piloted, from recommendations to auto-tagging"],
+    },
   },
 
   /* ================================================================== */
@@ -538,6 +553,11 @@ export const caseStudies: CaseStudy[] = [
       todo: ["What changed in how you think about product once you owned a P&L?"],
     },
     capabilities: ["P&L Ownership", "Payments", "Funnel Optimisation", "Seasonal Scale", "Operations"],
+    card: {
+      context: "A national student assessment programme, run as a standalone product line.",
+      contribution: "Own the programme end to end: registration, payments and results delivery.",
+      outcomes: ["900K registrations", "₹10 Cr+ annual revenue"],
+    },
   },
 ];
 

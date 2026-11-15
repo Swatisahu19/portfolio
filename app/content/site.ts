@@ -39,9 +39,9 @@ export const site = {
 
 export const nav = [
   { label: "Work", href: "/#work", id: "work" },
-  { label: "About", href: "/#about", id: "about" },
   { label: "Experience", href: "/#experience", id: "experience" },
-  { label: "Experiments", href: "/#lab", id: "lab" },
+  { label: "AI Lab", href: "/#lab", id: "lab" },
+  { label: "About", href: "/#about", id: "about" },
   { label: "Resume", href: "/resume", id: "resume" },
 ] as const;
 
@@ -51,7 +51,7 @@ export const hero = {
   /** Final highlighted word of the headline */
   headlineAccent: "forward",
   statement:
-    "I'm a product leader with 11+ years of experience turning complex business challenges into scalable digital products. I work across product strategy, revenue growth, enterprise transformation, and AI-powered innovation to create meaningful business outcomes.",
+    "Principal Product Manager with 11+ years across enterprise platforms, digital products and transformation. I connect product strategy to revenue and operating outcomes, and I build AI-enabled products hands-on.",
   floatingLabels: [
     "PRODUCT STRATEGY",
     "DIGITAL TRANSFORMATION",
@@ -60,11 +60,12 @@ export const hero = {
     "BUSINESS GROWTH",
     "CUSTOMER EXPERIENCE",
   ],
+  /** Seniority and scope at a glance; outcomes live in Impact, so nothing repeats */
   credibility: [
-    "11+ years in product",
-    "₹100 Cr+ bookings on one platform",
-    "Enterprise transformation",
-    "AI & product innovation",
+    "Principal PM · HT Media",
+    "Leads a 20-person product & engineering org",
+    "50M+ user digital platform",
+    "Enterprise estate: Salesforce, SAP, Zoho",
   ],
 };
 
@@ -235,7 +236,7 @@ export const toolkit = [
 export const lab: LabProject[] = [
   {
     name: "HR Buddy",
-    subtitle: "AI-powered enterprise HRMS",
+    subtitle: "Independent product experiment · AI-powered HRMS",
     featured: true,
     stage: "LIVE PRODUCT",
     problem: "Enterprise HR workflows are distributed across modules, forms and approval chains.",
@@ -245,28 +246,27 @@ export const lab: LabProject[] = [
     approach: [
       "Claude Code as AI development partner",
       "Google Gemini as the in-product AI provider",
-      "Modular enterprise architecture",
       "Permission-aware AI tools",
       "Synthetic data",
       "Automated testing and evaluation",
     ],
-    outcome: "A working HRMS with 16 modules and an integrated AI assistant, deployed in 11 days.",
-    stageNote: "Independent experiment on synthetic data. Live at swati-sahu.com/hr-buddy.",
+    outcome: "A working HRMS with 16 modules and an integrated AI assistant, live in production.",
+    stageNote: "Live at swati-sahu.com/hr-buddy, on synthetic data.",
     links: [
-      { label: "Explore product", href: "/hr-buddy", external: true },
       { label: "Read case study", href: "/work/hr-buddy" },
-      { label: "Request code access", href: "/?topic=hr-buddy-access#contact" },
+      { label: "The AI experiment", href: "/lab/hr-buddy-experiment" },
+      { label: "Explore product", href: "/hr-buddy", external: true },
     ],
     check: { status: "verified", source: "HR Buddy features, AI and technology (15 Nov 2026)" },
   },
   {
     name: "PM Toolkit",
+    subtitle: "Open source",
     stage: "LIVE PRODUCT",
     problem: "Product managers rebuild the same PRDs, prioritisation sheets and SQL from scratch on every project.",
-    concept:
-      "An open-source working kit of templates, AI prompts, frameworks and SQL snippets, wired for AI-assisted editing in Cursor.",
+    concept: "A working kit of templates, AI prompts, frameworks and SQL snippets, wired for AI-assisted editing in Cursor.",
     contribution: "Designed the structure, wrote the templates and prompt library, published it under MIT.",
-    approach: ["Markdown-only, zero build step", "Cursor rules encode conventions", "Private folder keeps confidential work off GitHub"],
+    approach: ["Markdown-only, zero build step", "Cursor rules encode conventions"],
     stageNote: "Public repository, maintained.",
     href: "https://github.com/Swatisahu19/pm-toolkit",
     hrefLabel: "View on GitHub",
@@ -274,38 +274,34 @@ export const lab: LabProject[] = [
   },
   {
     name: "GenAI editorial pilots",
+    subtitle: "Editorial workflow",
     stage: "PROTOTYPE",
     problem: "Editorial teams spend time on repetitive work around every story: summaries, tags and metadata.",
     concept: "Generative AI inside the editorial workflow for summarisation and auto-tagging, with editors staying in control.",
     contribution: "Ran the pilots as part of owning AI adoption across the product estate.",
-    approach: ["Pilot inside existing workflow", "Human review before publish", "Build-vs-buy evaluation before platform spend"],
+    approach: ["Pilot inside existing workflow", "Human review before publish"],
     stageNote: "Piloted in editorial workflows. Not a reader-facing product.",
     check: { status: "drafted", source: "Resume, Oct 2026 (pilots); problem framing drafted", note: "Confirm the framing and current status of the pilots." },
   },
   {
     name: "In-house HRMS",
+    subtitle: "HT Media initiative · separate from HR Buddy",
     stage: "CONCEPT",
-    problem:
-      "A large media group runs HR on a licensed SaaS HRMS that duplicates roles for multi-entity employees, needs hand-edited policy groups and pushes rostering offline.",
-    concept:
-      "An in-house HRMS that rebuilds every configured rule with parity first, then fixes known pain points, with no-code forms, workflows and approvals for HR admins.",
+    problem: "Replace a licensed SaaS HRMS with a platform HR admins can configure themselves.",
+    concept: "An in-house HRMS that rebuilds every configured rule with parity first, then fixes known pain points, with no-code forms, workflows and approvals for HR admins.",
     contribution: "Product owner for requirements: discovery walkthroughs with HR, scope and phasing, PRD.",
-    approach: ["Parity principle with signed-off deviations", "MoSCoW phasing across 9 Phase 1 modules", "Configurable builders over hard-coded policy"],
-    stageNote: "Requirements defined. Build not yet started. A separate employer initiative, not HR Buddy.",
-    check: {
-      status: "confirm",
-      source: "Internal requirements document",
-      note: "Internal employer programme. Approve this generic wording, or remove before publishing.",
-    },
+    approach: ["Parity principle with signed-off deviations", "MoSCoW phasing across 9 Phase 1 modules"],
+    stageNote: "Requirements defined. Build not yet started.",
+    check: { status: "verified", source: "Swati, Nov 2026: HT Media initiative, concept stage" },
   },
   {
     name: "This portfolio",
+    subtitle: "swati-sahu.com",
     stage: "LIVE PRODUCT",
     problem: "A static CV page could not show how I think about products, only where I have worked.",
-    concept:
-      "A case-study-led site built with AI pair-programming, with every claim stored as reviewable data with its source.",
+    concept: "A case-study-led site built with AI pair-programming, with every claim stored as reviewable data with its source.",
     contribution: "Product direction, content model and review. Built with Claude and Cursor.",
-    approach: ["Next.js App Router, static output", "Hand-written canvas 3D, no WebGL dependency", "Claims carry provenance and review status"],
+    approach: ["Next.js App Router, static output", "Claims carry provenance and review status"],
     stageNote: "Live at swati-sahu.com.",
     href: "https://github.com/Swatisahu19/portfolio",
     hrefLabel: "View source",
@@ -314,18 +310,16 @@ export const lab: LabProject[] = [
 ];
 
 export const about = {
-  headline: "Part strategist. Part builder. Always curious.",
+  headline: "Part strategist. Part builder.",
   paragraphs: [
     "I started in competitive intelligence, taking markets apart for consulting clients. The habit stuck: before I decide what to build, I want to know who is winning, why, and what it would take to change that.",
-    "From there I moved into product: B2B analytics platforms at The Smart Cube, insurance distribution at Max Life, and since 2022, HT Media. Today I run the product vertical across Print, Digital, Jobs and Radio, plus the enterprise systems the business runs on: Salesforce, SAP and Zoho.",
-    "My best work sits where revenue meets legacy operations. I moved advertising sales for 5,000+ sellers onto one Salesforce platform wired to SAP. I took newspaper circulation from paper orders to a route platform that tracks every delivery. And I run a national student assessment programme as a business with its own P&L.",
-    "I use AI as a builder and as a buyer: ML personalisation and forecasting in production, GenAI pilots in editorial, Einstein in sales, and Claude and Cursor for my own prototypes. I'm looking for senior product leadership roles in India, Europe or the Middle East where commercial and technical judgment both matter.",
+    "My best work sits where revenue meets legacy operations, and I use AI as both a buyer and a builder: ML and GenAI on the platforms I own, and hands-on products like HR Buddy.",
+    "I'm looking for Director, Head of Product and Principal Product roles in India, Europe or the Middle East, where commercial and technical judgment both matter.",
   ],
-  principles: ["Outcomes over output", "Write it down", "Instrument before you argue", "Ship the smallest true thing"],
 };
 
 export const contact = {
   headline: "Have an interesting problem to solve?",
   copy:
-    "I'm always interested in meaningful conversations around product strategy, technology, transformation, and building what's next.",
+    "Hiring for a senior product role, or want to compare notes on enterprise platforms and AI? Write to me directly, or use the form.",
 };
