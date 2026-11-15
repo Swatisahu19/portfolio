@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
+import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -15,7 +16,7 @@ type RevealProps = {
 
 /** Fade-and-rise on first scroll into view. Becomes a plain fade under reduced motion. */
 export function Reveal({ children, delay = 0, y = 28, className, as = "div" }: RevealProps) {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   const Tag = motion[as];
   return (
     <Tag
@@ -53,7 +54,7 @@ export function LineReveal({
   /** Animate on mount (hero) instead of on scroll */
   immediate?: boolean;
 }) {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   if (immediate) {
     // CSS-driven so the headline is visible without waiting for hydration
     return (

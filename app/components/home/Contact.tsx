@@ -79,7 +79,7 @@ export function Contact() {
             <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full ring-2 ring-lime/70 ring-offset-4 ring-offset-night sm:h-24 sm:w-24">
               <Image src={site.contactPortrait.src} alt={site.contactPortrait.alt} fill sizes="96px" className="object-cover object-[50%_22%]" />
             </div>
-            <p className="eyebrow text-white/60"><span className="text-lime">07</span> / Contact</p>
+            <p className="eyebrow text-white/60">Get in touch</p>
           </Reveal>
           <h2 className="mt-8 text-d-lg font-medium">
             <LineReveal lines={["Have an interesting", "problem to solve?"]} />

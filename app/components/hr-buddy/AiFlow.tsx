@@ -1,6 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { aiFlow } from "@/content/hr-buddy";
 import { cn } from "@/lib/utils";
@@ -15,7 +16,7 @@ export function AiFlow() {
   const [step, setStep] = useState(0);
   const [auto, setAuto] = useState(true);
   const [outcome, setOutcome] = useState<"confirm" | "cancel" | null>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "-20% 0px -20% 0px" });
   const last = aiFlow.length - 1;

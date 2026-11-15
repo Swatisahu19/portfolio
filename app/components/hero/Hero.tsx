@@ -1,7 +1,8 @@
 "use client";
 
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
 import Image from "next/image";
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform, type MotionValue } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "framer-motion";
 import type { ReactNode } from "react";
 import { hero, site } from "@/content/site";
 import { NetworkCanvas } from "./NetworkCanvas";
@@ -44,7 +45,7 @@ export function Hero() {
   const py = useMotionValue(0);
   const sx = useSpring(px, { stiffness: 60, damping: 20, mass: 0.6 });
   const sy = useSpring(py, { stiffness: 60, damping: 20, mass: 0.6 });
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
 
   const onMove = (e: React.PointerEvent<HTMLElement>) => {
     if (reduce || e.pointerType !== "mouse") return;
@@ -118,12 +119,15 @@ export function Hero() {
           <Enter delay={0.9} className="mt-10 flex flex-wrap gap-3">
             <Button asChild size="lg">
               <a href="#work">
-                Explore my work <ArrowGlyph />
+                View selected work <ArrowGlyph />
               </a>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <a href="#contact">Let&apos;s connect</a>
+              <a href="#contact">Contact me</a>
             </Button>
+            <a href={site.resumePdf ?? "/resume"} className="label link-draw self-center px-2 text-ink-2 hover:text-ink">
+              View resume →
+            </a>
           </Enter>
         </div>
 
@@ -158,11 +162,11 @@ export function Hero() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/35 via-transparent to-transparent" aria-hidden="true" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 text-ivory sm:p-5">
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-display text-lg font-medium leading-tight">Swati Sahu</p>
-                    <p className="label mt-1 whitespace-nowrap opacity-80">Product Leader · India</p>
+                    <p className="label mt-1 truncate opacity-80">Product Leader · India</p>
                   </div>
-                  <span className="label whitespace-nowrap rounded-full bg-lime px-2.5 py-1.5 text-ink">Open to roles</span>
+                  <span className="label shrink-0 whitespace-nowrap rounded-full bg-lime px-2.5 py-1.5 text-ink">Open to roles</span>
                 </div>
               </div>
               {/* Corner ticks: viewfinder detail */}

@@ -10,9 +10,10 @@ import { cn } from "@/lib/utils";
 const SECTIONS = [
   { id: "layers", label: "Two layers of AI" },
   { id: "lifecycle", label: "The lifecycle" },
-  { id: "worked", label: "What worked" },
-  { id: "judgment", label: "Human judgment" },
-  { id: "tradeoffs", label: "Trade-offs" },
+  { id: "requirements", label: "Idea to requirements" },
+  { id: "building", label: "Building with Claude Code" },
+  { id: "ai-testing", label: "Designing & testing the AI" },
+  { id: "controls", label: "Controls" },
   { id: "lessons", label: "Lessons" },
 ];
 const toc: TocItem[] = SECTIONS.map((s, i) => ({ ...s, n: String(i + 1).padStart(2, "0") }));
@@ -100,11 +101,39 @@ export function ExperimentView() {
             </ol>
           </Section>
 
-          {/* What worked */}
-          <Section n={n("worked")} id="worked" title="What worked">
+          {/* Requirements */}
+          <Section n={n("requirements")} id="requirements" title="From an idea to requirements and modules">
             <Reveal className="prose-case max-w-prose">
-              <ul>{e.worked.map((x) => <li key={x}>{x}</li>)}</ul>
+              <p>The most important work happened before any code: turning a broad idea into requirements specific enough that an AI partner could build them without guessing.</p>
             </Reveal>
+            <div className="mt-8 grid gap-px overflow-hidden rounded-lg bg-ink/10 sm:grid-cols-2">
+              {e.requirements.map((r, i) => (
+                <Reveal key={r.title} delay={(i % 2) * 0.05} className="bg-paper p-6">
+                  <p className="font-display text-xl">{r.title}</p>
+                  <p className="mt-2 leading-relaxed text-ink-2">{r.body}</p>
+                </Reveal>
+              ))}
+            </div>
+          </Section>
+
+          {/* Building */}
+          <Section n={n("building")} id="building" title="Building with Claude Code">
+            <Reveal className="prose-case max-w-prose">
+              <ul>{e.building.map((x) => <li key={x}>{x}</li>)}</ul>
+            </Reveal>
+          </Section>
+
+          {/* AI testing */}
+          <Section n={n("ai-testing")} id="ai-testing" title="Designing and testing the AI workflows">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {e.aiTesting.map((t, i) => (
+                <Reveal key={t.title} delay={(i % 2) * 0.05} className={cn("rounded-lg p-6", i === 3 ? "on-dark bg-night text-white" : "border border-ink/10 bg-paper")}>
+                  <p className={cn("label", i === 3 ? "text-lime" : "text-cobalt")}>{String(i + 1).padStart(2, "0")}</p>
+                  <p className="mt-3 font-display text-xl">{t.title}</p>
+                  <p className={cn("mt-2 leading-relaxed", i === 3 ? "text-white/75" : "text-ink-2")}>{t.body}</p>
+                </Reveal>
+              ))}
+            </div>
             <div className="mt-10 grid gap-6 md:grid-cols-2">
               <Reveal><Shot shot={shots.admin} sizes="(min-width: 768px) 40vw, 100vw" /></Reveal>
               <Reveal delay={0.08}><Shot shot={shots.confirm} sizes="(min-width: 768px) 40vw, 100vw" /></Reveal>
@@ -112,33 +141,20 @@ export function ExperimentView() {
             <p className="mt-4 max-w-prose text-sm leading-relaxed text-mute">{localRunNote}</p>
           </Section>
 
-          {/* Human judgment */}
-          <Section n={n("judgment")} id="judgment" title="What required human judgment">
-            <div className="grid gap-4">
-              {e.judgment.map((j, i) => (
-                <Reveal key={j.title} delay={i * 0.05}>
-                  <div className="grid gap-4 rounded-lg bg-night p-6 text-white md:grid-cols-[auto_1fr] md:gap-8 md:p-8">
-                    <span className="font-display text-4xl text-lime">J{i + 1}</span>
-                    <div>
-                      <h3 className="text-d-sm font-medium">{j.title}</h3>
-                      <p className="mt-3 max-w-prose leading-relaxed text-white/75">{j.body}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </Section>
-
-          {/* Trade-offs */}
-          <Section n={n("tradeoffs")} id="tradeoffs" title="Trade-offs">
-            <div className="grid gap-px overflow-hidden rounded-lg bg-ink/10 sm:grid-cols-2">
-              {e.tradeoffs.map((t, i) => (
-                <Reveal key={t.title} delay={(i % 2) * 0.05} className="bg-paper p-6">
-                  <p className="font-display text-xl">{t.title}</p>
-                  <p className="mt-2 leading-relaxed text-ink-2">{t.body}</p>
-                </Reveal>
-              ))}
-            </div>
+          {/* Controls */}
+          <Section n={n("controls")} id="controls" title="Permissions, data and a human in the loop">
+            <Reveal>
+              <ul className="divide-y divide-ink/10 border-y border-ink/10">
+                {e.controls.map((c) => (
+                  <li key={c} className="flex gap-4 py-4 text-ink-2">
+                    <span className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-cobalt" aria-hidden="true" />{c}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal className="mt-5">
+              <Link href={`${hrBuddy.caseHref}#responsible-ai`} className="label link-draw text-cobalt">Every safeguard, in the case study →</Link>
+            </Reveal>
           </Section>
 
           {/* Lessons */}
