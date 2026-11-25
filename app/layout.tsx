@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { site } from "@/content/site";
+import { Analytics } from "@vercel/analytics/react";
 
 /** Editorial serif for display, Inter for body and labels */
 const display = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-display", display: "swap" });
@@ -41,6 +42,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
           <Footer />
         </MotionProvider>
+        {/* Cookieless page-view counts (Vercel Web Analytics). Also counts /honeytrap and /hr-buddy, which load the same script. */}
+        <Analytics />
       </body>
     </html>
   );
